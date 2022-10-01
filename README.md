@@ -19,7 +19,7 @@ The features of this package are below:
 ## How to use 
 1. Clone the repo to your ros2 workspace
 ```bash
-git clone https://github.com/mich1342/ros2_laser_scan_merger.git
+git clone https://github.com/hijimasa/laser_scan_integrator.git
 ```
 2. Edit the topic name in the launch file if needed
 
