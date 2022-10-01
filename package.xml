@@ -4,7 +4,7 @@
   <name>laser_scan_integrator</name>
   <version>1.0.0</version>
   <description>A Package to combine several laser scan value</description>
-  <maintainer email="hijikata@ir.utsunomiya-u.ac.jp">hijimasa</maintainer>
+  <maintainer email="hijikata@daihen.co.jp">Masaaki Hijikata</maintainer>
   <license>Apache Lisence 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
