@@ -198,10 +198,6 @@ class scanMerger : public rclcpp::Node
 	       )
 	    {
                 float range = interpolate(scan_data[i-1][0], scan_data[i][0], scan_data[i-1][1], scan_data[i][1], angle);
-                if (range < 2.5f)
-                {
-                    std::cout << i << ", " << scan_data[i-1][0] << ", " << scan_data[i][0] << ", " << scan_data[i-1][1] << ", " << scan_data[i][1] << ", " << range << ", " << angle << std::endl;
-                }
 	        temp_range.push_back(range);
 	    }
 	    else
