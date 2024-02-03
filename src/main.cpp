@@ -79,8 +79,8 @@ class scanMerger : public rclcpp::Node
 	double sensor1_r, sensor1_p, sensor1_y, sensor2_r, sensor2_p, sensor2_y;
 	geometry_quat_to_rpy(&sensor1_r, &sensor1_p, &sensor1_y, trans1_.transform.rotation);
 	geometry_quat_to_rpy(&sensor2_r, &sensor2_p, &sensor2_y, trans2_.transform.rotation);
-	sensor1_y += laser1Alpha_;
-	sensor2_y += laser2Alpha_;
+	sensor1_y += laser1Yaw_;
+	sensor2_y += laser2Yaw_;
 
         std::vector<std::array<float,2>> scan_data;
         int count = 0;
@@ -234,13 +234,13 @@ class scanMerger : public rclcpp::Node
         this->declare_parameter<std::string>("scanTopic1");
         this->declare_parameter<float>("laser1XOff");
         this->declare_parameter<float>("laser1YOff");
-        this->declare_parameter<float>("laser1Alpha");
+        this->declare_parameter<float>("laser1Yaw");
         this->declare_parameter<bool>("show1");
 
         this->declare_parameter<std::string>("scanTopic2");
         this->declare_parameter<float>("laser2XOff");
         this->declare_parameter<float>("laser2YOff");
-        this->declare_parameter<float>("laser2Alpha");
+        this->declare_parameter<float>("laser2Yaw");
         this->declare_parameter<bool>("show2");
 
         this->declare_parameter<float>("robotFrontEnd");
@@ -254,12 +254,12 @@ class scanMerger : public rclcpp::Node
         this->get_parameter_or<std::string>("scanTopic1",topic1_ ,"lidar_front_right/scan");
         this->get_parameter_or<float>("laser1XOff",laser1XOff_, 0.0);
         this->get_parameter_or<float>("laser1YOff",laser1YOff_, 0.0);
-        this->get_parameter_or<float>("laser1Alpha",laser1Alpha_, 0.0);
+        this->get_parameter_or<float>("laser1Yaw",laser1Yaw_, 0.0);
         this->get_parameter_or<bool>("show1",show1_, true);
         this->get_parameter_or<std::string>("scanTopic2",topic2_, "lidar_rear_left/scan");
         this->get_parameter_or<float>("laser2XOff",laser2XOff_, 0.0);
         this->get_parameter_or<float>("laser2YOff",laser2YOff_, 0.0);
-        this->get_parameter_or<float>("laser2Alpha",laser2Alpha_, 0.0);
+        this->get_parameter_or<float>("laser2Yaw",laser2Yaw_, 0.0);
         this->get_parameter_or<bool>("show2",show2_, false);
 
         this->get_parameter_or<float>("robotFrontEnd", robotFrontEnd_, 0.0);
@@ -270,9 +270,9 @@ class scanMerger : public rclcpp::Node
     
     std::string topic1_, topic2_, integratedTopic_, integratedFrameId_;
     bool show1_, show2_;
-    float laser1XOff_, laser1YOff_, laser1Alpha_;
+    float laser1XOff_, laser1YOff_, laser1Yaw_;
 
-    float laser2XOff_, laser2YOff_, laser2Alpha_;
+    float laser2XOff_, laser2YOff_, laser2Yaw_;
 
     float robotFrontEnd_, robotRearEnd_, robotRightEnd_, robotLeftEnd_;
 
